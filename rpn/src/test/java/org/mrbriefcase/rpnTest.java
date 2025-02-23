@@ -37,4 +37,18 @@ public class rpnTest {
         String[] args = {"0","cos"};
         assertEquals("1", rpn.main(args));
     }
+    
+    @Test
+    public void cosineTest() {
+        rpn rpn = new rpn();
+        String[] args = {"0","cos"};
+        assertEquals("1", rpn.main(args));
+    }
+    
+    @Test
+    public void cosineTest() {
+        rpn rpn = new rpn();
+        String[] args = {"3","0","cos","+"};
+        assertEquals("4", rpn.main(args));
+    }
 }
