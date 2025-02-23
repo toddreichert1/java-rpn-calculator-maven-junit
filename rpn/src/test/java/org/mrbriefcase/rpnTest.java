@@ -39,13 +39,6 @@ public class rpnTest {
     }
     
     @Test
-    public void cosineTest() {
-        rpn rpn = new rpn();
-        String[] args = {"0","cos"};
-        assertEquals("1", rpn.main(args));
-    }
-     
-    @Test
     public void multipleOperationTest() {
         rpn rpn = new rpn();
         String[] args = {"3","0","cos","+"};
