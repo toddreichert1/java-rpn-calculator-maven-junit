@@ -35,25 +35,35 @@ class rpn {
     Pattern twoArgumentOperationPattern = Pattern.compile("(\\+|-|\\*|\\/|a|s|m|d|add|sub|mul|div)", Pattern.CASE_INSENSITIVE);
 
     double output = 0.0;
+    String formatttedOuput = "";
+    String errorMessage = "";
+    String errorCode = "";
+    
+    // variables used in the processing
+    boolean processingOperators = false;
+    int numberOfArguments = args.length;
+    int nextArgumentPosition = 0;
 
     // if no arguments, then print help
     if (args.length == 0) {
-      printHelp();
+      errorCode = "ERR01";
+      errorMessage = "(" + errorCode + ") ERROR: No arguments provided";
+      printHelp(errorMessage);
     } else if (args.length == 1) {
-      printHelp("ERROR: Not enough operands and/or operators");
+      errorCode = "ERR06";
+      errorMessage = "(" + errorCode + ") ERROR: Not enough operands and/or operators";
+      printHelp(errorMessage);
     } else {
-      // variables used in the processing
-      boolean processingOperators = false;
-      int numberOfArguments = args.length;
-      int nextArgumentPosition = 0;
-
       // processing loop, processing operands and operations from the command line
       for (int argumentPosition = 0; argumentPosition < numberOfArguments; argumentPosition++) {
         if (operandPattern.matcher(args[argumentPosition]).matches()) {
           // this captures when a user gives numbers after operators, 3 3 + 3 +
           if (processingOperators) {
             int position = argumentPosition + 1;
-            printHelp("ERROR: Invalid argument order at position " + position + " with value " + args[argumentPosition]);
+            errorCode = "ERR05";
+            errorMessage = "(" + errorCode + ") ERROR: Invalid argument order at position " + position + " with value " + args[argumentPosition];
+            printHelp(errorMessage);
+            break;
           }
         } else if (operationPattern.matcher(args[argumentPosition]).matches()) {
           // start processing/operating
@@ -64,8 +74,6 @@ class rpn {
               // this will grab the last operand to start the operating
               output = Double.parseDouble(args[argumentPosition - 1]);
               nextArgumentPosition = argumentPosition - 1;
-            } else {
-              printHelp("ERROR: Not enough operands to operator on");
             }
             processingOperators = true;
           }
@@ -77,7 +85,10 @@ class rpn {
           if (twoArgumentOperationPattern.matcher(operator).matches()) {
             nextArgumentPosition -= 1;
             if (nextArgumentPosition < 0) {
-              printHelp("ERROR: Not enough operands to operator on");
+              errorCode = "ERR04";
+              errorMessage = "(" + errorCode + ") ERROR: Not enough operands to operator on";
+              printHelp(errorMessage);
+              break;
             }
           }
 
@@ -101,7 +112,14 @@ class rpn {
             case "/":
             case "d":
             case "div":
-              output = Double.parseDouble(args[nextArgumentPosition]) / output;
+              // check for division by zero
+              if (output == 0) {
+                errorCode = "ERR08";
+                errorMessage = "(" + errorCode + ") ERROR: Cannot divide by zero";
+                printHelp(errorMessage);
+              } else {
+                output = Double.parseDouble(args[nextArgumentPosition]) / output;
+              }
               break;
             case "cos":
               output = Math.cos(output);
@@ -112,30 +130,51 @@ class rpn {
         } else {
           // this captures and exits when invalid arguments or operators are given by the user
           int position = argumentPosition + 1;
-          printHelp("ERROR: Invalid argument " + position + " with value " + args[argumentPosition]);
+          errorCode = "ERR03";
+          errorMessage = "(" + errorCode + ") ERROR: Invalid argument or operator in position " + position + " with value " + args[argumentPosition];
+          printHelp(errorMessage);
+        }
+        
+        // break out of loop if an error has occurred 
+        if (errorCode.length() > 0) {
+          break;
         }
       } // for loop, argument processing
 
       // this checks to see if we received an operator, if so, show the output, else show an error
       if (processingOperators) {
         // this prints the output, cleaning up the value to look more "integer-ish", ie, 7.0 -> 7
-        System.out.println(Double.toString(output).replaceAll("\\.0*$", ""));
+        formatttedOuput = Double.toString(output).replaceAll("\\.0*$", "");
       } else {
-        // this captures and exits when invalid arguments or operators are given by the user
-        printHelp("ERROR: No operators were present");
-      }
+        // check for error occurred in processing loop, if not, then present this error
+        if (errorCode.length() == 0) {
+          // this captures and exits when invalid arguments or operators are given by the user
+          errorCode = "ERR02";
+          errorMessage = "(" + errorCode + ") ERROR: No operators were present";
+          printHelp(errorMessage);
+        }
+      }      
     } // argument processing
-    return(Double.toString(output).replaceAll("\\.0*$", ""));
+    
+    // this captures when a user provides too many operands, 3 3 3 +
+    if ((errorCode.length() == 0) && (nextArgumentPosition > 0)) {
+      errorCode = "ERR07";
+      errorMessage = "(" + errorCode + ") ERROR: Too many operands were present";
+      printHelp(errorMessage);
+    }
+
+    // if all has gone well, display result
+    if (errorCode.length() == 0) {
+      System.out.println(formatttedOuput);
+    }
+
+    // return the error code or result
+    return((errorCode.length() > 0) ? errorCode : formatttedOuput);
   } // end main
 
-  private String printHelp() {
-    printHelp("");
-    return("");
-  }
-
-  private String printHelp(String message) {
-    if (message.length() > 0) {
-      System.out.println("\n" + message);
+  private String printHelp(String errorMessage) {
+    if (errorMessage.length() > 0) {
+      System.out.println("\n" + errorMessage);
     }
 
     System.out.println("");

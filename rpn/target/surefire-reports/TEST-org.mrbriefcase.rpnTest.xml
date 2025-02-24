@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="org.mrbriefcase.rpnTest" time="0.041" tests="6" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="org.mrbriefcase.rpnTest" time="0.05" tests="21" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/todd/GitHub/java-rpn-calculator-maven-junit/rpn/target/surefire/surefirebooter13040344239627389876.jar /Users/todd/GitHub/java-rpn-calculator-maven-junit/rpn/target/surefire 2025-02-23T11-47-49_005-jvmRun1 surefire6267622269063459618tmp surefire_08614524012778845914tmp"/>
+    <property name="sun.java.command" value="/Users/todd/GitHub/java-rpn-calculator-maven-junit/rpn/target/surefire/surefirebooter1244773008925364184.jar /Users/todd/GitHub/java-rpn-calculator-maven-junit/rpn/target/surefire 2025-02-24T12-52-25_373-jvmRun1 surefire17825976410624245948tmp surefire_09530139846567072452tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/todd/GitHub/java-rpn-calculator-maven-junit/rpn/target/test-classes:/Users/todd/GitHub/java-rpn-calculator-maven-junit/rpn/target/classes:/Users/todd/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/todd/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
@@ -29,7 +29,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/todd/GitHub/java-rpn-calculator-maven-junit/rpn/target/surefire/surefirebooter13040344239627389876.jar"/>
+    <property name="surefire.real.class.path" value="/Users/todd/GitHub/java-rpn-calculator-maven-junit/rpn/target/surefire/surefirebooter1244773008925364184.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="21.0.6+7-LTS"/>
@@ -58,10 +58,25 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="divisionTest" classname="org.mrbriefcase.rpnTest" time="0.006"/>
-  <testcase name="additionTest" classname="org.mrbriefcase.rpnTest" time="0"/>
+  <testcase name="additionAlphaTest" classname="org.mrbriefcase.rpnTest" time="0.004"/>
+  <testcase name="divisionByZeroTest" classname="org.mrbriefcase.rpnTest" time="0.001"/>
+  <testcase name="divisionTest" classname="org.mrbriefcase.rpnTest" time="0"/>
+  <testcase name="multiplicationAlphaTest" classname="org.mrbriefcase.rpnTest" time="0"/>
+  <testcase name="divisionByZeroTest2" classname="org.mrbriefcase.rpnTest" time="0.001"/>
+  <testcase name="divisionByZeroTest3" classname="org.mrbriefcase.rpnTest" time="0.001"/>
+  <testcase name="noArgumentsTest" classname="org.mrbriefcase.rpnTest" time="0.001"/>
+  <testcase name="subtractionAlphaTest" classname="org.mrbriefcase.rpnTest" time="0"/>
+  <testcase name="tooManyOperandsTest" classname="org.mrbriefcase.rpnTest" time="0.002"/>
+  <testcase name="invalidArgumentOrderTest" classname="org.mrbriefcase.rpnTest" time="0.001"/>
+  <testcase name="additionTest" classname="org.mrbriefcase.rpnTest" time="0.001"/>
   <testcase name="cosineTest" classname="org.mrbriefcase.rpnTest" time="0.001"/>
+  <testcase name="notEnoughOperandsToOperatorOnTest" classname="org.mrbriefcase.rpnTest" time="0.001"/>
   <testcase name="multiplicationTest" classname="org.mrbriefcase.rpnTest" time="0.001"/>
   <testcase name="multipleOperationTest" classname="org.mrbriefcase.rpnTest" time="0.001"/>
+  <testcase name="noOperatorsPresentTest" classname="org.mrbriefcase.rpnTest" time="0.001"/>
   <testcase name="subtractionTest" classname="org.mrbriefcase.rpnTest" time="0.001"/>
+  <testcase name="divisionAlphaTest" classname="org.mrbriefcase.rpnTest" time="0"/>
+  <testcase name="invalidArgumentOrOperatorPresentTest" classname="org.mrbriefcase.rpnTest" time="0.002"/>
+  <testcase name="decimalPointTest" classname="org.mrbriefcase.rpnTest" time="0"/>
+  <testcase name="notEnoughOperandsAndOrOperatorsTest" classname="org.mrbriefcase.rpnTest" time="0.001"/>
 </testsuite>
