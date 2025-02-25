@@ -1,2 +1,2 @@
 # java-rpn-calculator-maven-junit
-Building upon java-run-calculator using Maven and JUnit
+Building upon java-rpn-calculator using Maven and JUnit
