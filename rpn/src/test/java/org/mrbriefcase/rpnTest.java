@@ -10,7 +10,7 @@ public class rpnTest {
         System.out.println("+noArgumentsTest++{}+");
         rpn rpn = new rpn();
         String[] args = {};
-        assertEquals("ERR01", rpn.main(args));
+        assertEquals("ERR01", rpn.calculate(args));
     }
     
     @Test
@@ -18,7 +18,7 @@ public class rpnTest {
         System.out.println("+additionTest++{\"3\",\"4\",\"+\"}+");
         rpn rpn = new rpn();
         String[] args = {"3","4","+"};
-        assertEquals("7", rpn.main(args));
+        assertEquals("7", rpn.calculate(args));
     }
 
     @Test
@@ -26,7 +26,7 @@ public class rpnTest {
         System.out.println("+additionAlphaTest++{\"3\",\"4\",\"5\",\"add\",\"a\"}+");
         rpn rpn = new rpn();
         String[] args = {"3","4","5","add","a"};
-        assertEquals("12", rpn.main(args));
+        assertEquals("12", rpn.calculate(args));
     }
 
     @Test
@@ -34,7 +34,7 @@ public class rpnTest {
         System.out.println("+subtractionTest++{\"3\",\"4\",\"-\"}+");
         rpn rpn = new rpn();
         String[] args = {"3","4","-"};
-        assertEquals("-1", rpn.main(args));
+        assertEquals("-1", rpn.calculate(args));
     }
 
     @Test
@@ -42,7 +42,7 @@ public class rpnTest {
         System.out.println("+subtractionAlphaTest++{\"5\",\"12\",\"3\",\"sub\",\"s\"}+");
         rpn rpn = new rpn();
         String[] args = {"5","12","3","sub","s"};
-        assertEquals("-4", rpn.main(args));
+        assertEquals("-4", rpn.calculate(args));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class rpnTest {
         System.out.println("+multiplicationTest++{\"3\",\"4\",\"*\"}+");
         rpn rpn = new rpn();
         String[] args = {"3","4","*"};
-        assertEquals("12", rpn.main(args));
+        assertEquals("12", rpn.calculate(args));
     }
 
     @Test
@@ -58,7 +58,7 @@ public class rpnTest {
         System.out.println("+multiplicationAlphaTest++{\"3\",\"4\",\"2\",\"mul\",\"m\"}+");
         rpn rpn = new rpn();
         String[] args = {"3","4","2","mul","m"};
-        assertEquals("24", rpn.main(args));
+        assertEquals("24", rpn.calculate(args));
     }
 
     @Test
@@ -66,7 +66,7 @@ public class rpnTest {
         System.out.println("+divisionTest++{\"12\",\"4\",\"/\"}+");
         rpn rpn = new rpn();
         String[] args = {"12","4","/"};
-        assertEquals("3", rpn.main(args));
+        assertEquals("3", rpn.calculate(args));
     }
 
     @Test
@@ -74,7 +74,7 @@ public class rpnTest {
         System.out.println("+divisionAlphaTest++{\"12\",\"8\",\"4\",\"div\",\"d\"}+");
         rpn rpn = new rpn();
         String[] args = {"12","8","4","div","d"};
-        assertEquals("6", rpn.main(args));
+        assertEquals("6", rpn.calculate(args));
     }
 
     @Test
@@ -82,7 +82,7 @@ public class rpnTest {
         System.out.println("+decimalPointTest++{\"3\",\"2\",\"d\"}+");
         rpn rpn = new rpn();
         String[] args = {"3","2","d"};
-        assertEquals("1.5", rpn.main(args));
+        assertEquals("1.5", rpn.calculate(args));
     }
 
     @Test
@@ -90,7 +90,7 @@ public class rpnTest {
         System.out.println("+divisionByZeroTest++{\"4\",\"0\",\"d\"}+");
         rpn rpn = new rpn();
         String[] args = {"4","0","d"};
-        assertEquals("ERR08", rpn.main(args));
+        assertEquals("ERR08", rpn.calculate(args));
     }
 
     @Test
@@ -98,7 +98,7 @@ public class rpnTest {
         System.out.println("+divisionByZeroTest2++{\"4\",\"0.0\",\"d\"}+");
         rpn rpn = new rpn();
         String[] args = {"4","0.0","d"};
-        assertEquals("ERR08", rpn.main(args));
+        assertEquals("ERR08", rpn.calculate(args));
     }
 
     @Test
@@ -106,7 +106,7 @@ public class rpnTest {
         System.out.println("+divisionByZeroTest3++{\"4\",\"3\",\"3\",\"s\",\"d\"}+");
         rpn rpn = new rpn();
         String[] args = {"4","3","3","s","d"};
-        assertEquals("ERR08", rpn.main(args));
+        assertEquals("ERR08", rpn.calculate(args));
     }
     
     @Test
@@ -114,7 +114,7 @@ public class rpnTest {
         System.out.println("+cosineTest++{\"0\",\"cos\"}+");
         rpn rpn = new rpn();
         String[] args = {"0","cos"};
-        assertEquals("1", rpn.main(args));
+        assertEquals("1", rpn.calculate(args));
     }
     
     @Test
@@ -122,7 +122,7 @@ public class rpnTest {
         System.out.println("+multipleOperationTest++{\"3\",\"0\",\"cos\",\"+\"}+");
         rpn rpn = new rpn();
         String[] args = {"3","0","cos","+"};
-        assertEquals("4", rpn.main(args));
+        assertEquals("4", rpn.calculate(args));
     }
     
     @Test
@@ -130,7 +130,7 @@ public class rpnTest {
         System.out.println("+noOperatorsPresentTest++{\"3\",\"0\"}+");
         rpn rpn = new rpn();
         String[] args = {"3","0"};
-        assertEquals("ERR02", rpn.main(args));
+        assertEquals("ERR02", rpn.calculate(args));
     }
     
     @Test
@@ -138,7 +138,7 @@ public class rpnTest {
         System.out.println("+invalidArgumentOrOperatorPresentTest++{\"3\",\"0\",\"^\"}+");
         rpn rpn = new rpn();
         String[] args = {"3","0","^"};
-        assertEquals("ERR03", rpn.main(args));
+        assertEquals("ERR03", rpn.calculate(args));
     }
     
     @Test
@@ -146,7 +146,7 @@ public class rpnTest {
         System.out.println("+notEnoughOperandsToOperatorOnTest++{\"3\",\"+\"}+");
         rpn rpn = new rpn();
         String[] args = {"3","+"};
-        assertEquals("ERR04", rpn.main(args));
+        assertEquals("ERR04", rpn.calculate(args));
     }
     
     @Test
@@ -154,7 +154,7 @@ public class rpnTest {
         System.out.println("+invalidArgumentOrderTest++{\"3\",\"3\",\"+\",\"3\",\"+\"}+");
         rpn rpn = new rpn();
         String[] args = {"3","3","+","3","+"};
-        assertEquals("ERR05", rpn.main(args));
+        assertEquals("ERR05", rpn.calculate(args));
     }
 
     @Test
@@ -162,7 +162,7 @@ public class rpnTest {
         System.out.println("+notEnoughOperandsAndOrOperatorsTest++{\"cos\"}+");
         rpn rpn = new rpn();
         String[] args = {"cos"};
-        assertEquals("ERR06", rpn.main(args));
+        assertEquals("ERR06", rpn.calculate(args));
     }
 
     @Test
@@ -170,6 +170,6 @@ public class rpnTest {
         System.out.println("+tooManyOperandsTest++{\"3\",\"3\",\"3\",\"+\"}+");
         rpn rpn = new rpn();
         String[] args = {"3","3","3","+"};
-        assertEquals("ERR07", rpn.main(args));
+        assertEquals("ERR07", rpn.calculate(args));
     }
 }

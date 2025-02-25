@@ -27,7 +27,12 @@ import java.lang.Math;
 
 
 class rpn {
-  public String main(String args[]) {
+  public static void main(String args[]) {
+    rpn rpn = new rpn();
+    rpn.calculate(args);
+  }
+      
+  public String calculate(String args[]) {
 
     // valid operands and operations
     Pattern operandPattern = Pattern.compile("-?\\d+(\\.\\d+)?");
