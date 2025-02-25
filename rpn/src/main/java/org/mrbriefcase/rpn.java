@@ -28,8 +28,7 @@ import java.lang.Math;
 
 class rpn {
   public static void main(String args[]) {
-    rpn rpn = new rpn();
-    rpn.calculate(args);
+    new rpn().calculate(args);
   }
       
   public String calculate(String args[]) {
