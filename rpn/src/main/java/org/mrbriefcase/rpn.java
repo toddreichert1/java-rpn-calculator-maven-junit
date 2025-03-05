@@ -24,7 +24,7 @@ package org.mrbriefcase;
 
 import java.util.regex.Pattern;
 import java.lang.Math;
-
+import java.util.Scanner;
 
 class rpn {
   public static void main(String args[]) {
@@ -48,11 +48,23 @@ class rpn {
     int numberOfArguments = args.length;
     int nextArgumentPosition = 0;
 
+    // if no arguments, then get them from STDIN
+    if (args.length == 0) {
+      Scanner scanner = new Scanner(System.in);
+      System.out.println("Enter the calculation (Example: 3 4 +): ");
+      String arguments = scanner.nextLine();
+      if (arguments.length() > 0) {
+        args = arguments.split(" ");
+        numberOfArguments = args.length;
+      }
+      scanner.close();
+    }
+    
     // if no arguments, then print help
     if (args.length == 0) {
-      errorCode = "ERR01";
-      errorMessage = "(" + errorCode + ") ERROR: No arguments provided";
-      printHelp(errorMessage);
+        errorCode = "ERR01";
+        errorMessage = "(" + errorCode + ") ERROR: No arguments provided";
+        printHelp(errorMessage);
     } else if (args.length == 1) {
       errorCode = "ERR06";
       errorMessage = "(" + errorCode + ") ERROR: Not enough operands and/or operators";

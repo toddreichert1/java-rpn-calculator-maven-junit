@@ -1,13 +1,60 @@
 package org.mrbriefcase;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 
 public class rpnTest {
+    private final InputStream originalIn = System.in;
+    private ByteArrayInputStream testIn;
+
+    @AfterEach
+    public void restoreStreams() {
+        System.setIn(originalIn);
+    }
+
+    @Test
+    public void stdinTest() {
+        System.out.println("+stdinTest++{}+");
+        
+        // Setting up the STDIN
+        String input = "3 4 +" + System.lineSeparator();
+        testIn = new ByteArrayInputStream(input.getBytes());
+        System.setIn(testIn);
+        
+        rpn rpn = new rpn();
+        String[] args = {};
+        assertEquals("7", rpn.calculate(args));
+    }
+   
+    @Test
+    public void stdinErrorNoOperatorsPresentTest() {
+        System.out.println("+stdinErrorNoOperatorsPresentTest++{}+");
+        
+        // Setting up the STDIN
+        String input = "3 4" + System.lineSeparator();
+        testIn = new ByteArrayInputStream(input.getBytes());
+        System.setIn(testIn);
+        
+        rpn rpn = new rpn();
+        String[] args = {};
+        assertEquals("ERR02", rpn.calculate(args));
+    }
+    
     @Test
     public void noArgumentsTest() {
         System.out.println("+noArgumentsTest++{}+");
+        
+        // Setting up the STDIN
+        String input = System.lineSeparator();
+        testIn = new ByteArrayInputStream(input.getBytes());
+        System.setIn(testIn);
+        
         rpn rpn = new rpn();
         String[] args = {};
         assertEquals("ERR01", rpn.calculate(args));
